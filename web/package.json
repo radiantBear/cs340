@@ -1,0 +1,18 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "dev": "npx nodemon app.js",
+    "start": "npx forever start app.js",
+    "stop": "npx forever stop app.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.1",
+    "forever": "^4.0.3",
+    "mysql2": "^3.14.1",
+    "nodemon": "^3.1.10"
+  }
+}
