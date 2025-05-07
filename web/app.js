@@ -5,6 +5,9 @@
 // ########################################
 // ########## SETUP
 
+// My only contribution to this code:
+require('dotenv').config();
+
 // Express
 const express = require('express');
 const app = express();
