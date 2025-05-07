@@ -1,26 +1,33 @@
-<table>
-    <thead>
-        <tr>Name</tr>
-        <tr>Phone</tr>
-        <tr>Email</tr>
-        <tr>Street</tr>
-        <tr>City</tr>
-        <tr>State</tr>
-        <tr>Zip</tr>
-        <tr>Current Customer</tr>
+<div class="container">
+  <h1 class="mb-4">Customers</h1>
+  <p class="lead">A list of current and former customers with their contact information.</p>
+
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Current Customer</th>
+      </tr>
     </thead>
     <tbody>
-        {{#each customers}}
-            <tr>
-                <td>{{this.name}}</td>
-                <td>{{this.phone}}</td>
-                <td>{{this.email}}</td>
-                <td>{{this.street}}</td>
-                <td>{{this.city}}</td>
-                <td>{{this.state}}</td>
-                <td>{{this.zipCode}}</td>
-                <td>{{#if this.currentCustomer}}Yes{{else}}No{{/if}}</td>
-            </tr>
-        {{/each}}
+      {{#each customers}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>{{this.phone}}</td>
+          <td>{{this.email}}</td>
+          <td>{{this.street}}</td>
+          <td>{{this.city}}</td>
+          <td>{{this.state}}</td>
+          <td>{{this.zipCode}}</td>
+          <td>{{#if this.currentCustomer}}Yes{{else}}No{{/if}}</td>
+        </tr>
+      {{/each}}
     </tbody>
-</table>
+  </table>
+</div>

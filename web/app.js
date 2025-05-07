@@ -6,7 +6,6 @@ const db = require('./database/db-connector');
 app.engine('.hbs', require('express-handlebars').engine({ defaultLayout: 'main', extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
-
 app.get('/', (_, res) => {
     res.status(200).render('index');
 });

@@ -1,16 +1,23 @@
-<table>
-    <thead>
-        <tr>Name</tr>
-        <tr>Description</tr>
-        <tr>Price</tr>
+<div class="container">
+  <h1 class="mb-4">Services</h1>
+  <p class="lead">A list of all available landscaping services and their prices.</p>
+
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
     </thead>
     <tbody>
-        {{#each services}}
-            <tr>
-                <td>{{this.name}}</td>
-                <td>{{this.description}}</td>
-                <td>{{this.price}}</td>
-            </tr>
-        {{/each}}
+      {{#each services}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>{{this.description}}</td>
+          <td>${{this.price}}</td>
+        </tr>
+      {{/each}}
     </tbody>
-</table>
+  </table>
+</div>
