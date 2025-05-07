@@ -1,0 +1,16 @@
+<table>
+    <thead>
+        <tr>Name</tr>
+        <tr>Description</tr>
+        <tr>Price</tr>
+    </thead>
+    <tbody>
+        {{#each services}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.description}}</td>
+                <td>{{this.price}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
