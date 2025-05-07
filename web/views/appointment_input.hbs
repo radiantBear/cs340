@@ -1,21 +1,21 @@
 <form>
     {{#unless newAppointment}}
-    <input type="hidden" name="id" value="{{appointment.id}}">
+        <input type="hidden" name="id" value="{{appointment.id}}">
     {{/unless}}
 
     <label for="employee">Employee</label>
     <select name="employee">
-            <option value="invalid">--</option>
-        {{#each employees}}
-            <option value="{{this.id}}">{{this.name}}</option>
-        {{/each}}
+            <option value="invalid" {{#if newAppointment}}selected{{/if}}>--</option>
+            {{#each employees}}
+                <option value="{{this.employeeId}}" {{#if (eq this.employeeId ../appointment.employeeId)}}selected{{/if}}>{{this.name}}</option>
+            {{/each}}
     </select>
 
     <label for="customer">Customer</label>
     <select name="customer">
-        <option value="invalid">--</option>
+        <option value="invalid" {{#if newAppointment}}selected{{/if}}>--</option>
         {{#each customers}}
-            <option value="{{this.id}}">{{this.name}}</option>
+            <option value="{{this.customerId}}" {{#if (eq this.customerId ../appointment.customerId)}}selected{{/if}}>{{this.name}}</option>
         {{/each}}
     </select>
 
@@ -28,7 +28,7 @@
     </select>
 
     <label for="date">Date</label>
-    <input name="date" type="date" {{#unless newAppointment}}value="{{appointment.appointmentDate}}"{{/unless}}>
+    <input name="date" type="date" {{#unless newAppointment}}value="{{formatDateForInput appointment.appointmentDate}}"{{/unless}}>
 
     <label for="status">Status</label>
     <input name="status" type="text" {{#unless newAppointment}}value="{{appointment.status}}"{{/unless}}>
