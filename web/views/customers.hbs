@@ -1,0 +1,26 @@
+<table>
+    <thead>
+        <tr>Name</tr>
+        <tr>Phone</tr>
+        <tr>Email</tr>
+        <tr>Street</tr>
+        <tr>City</tr>
+        <tr>State</tr>
+        <tr>Zip</tr>
+        <tr>Current Customer</tr>
+    </thead>
+    <tbody>
+        {{#each customers}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.phone}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.street}}</td>
+                <td>{{this.city}}</td>
+                <td>{{this.state}}</td>
+                <td>{{this.zipCode}}</td>
+                <td>{{#if this.currentCustomer}}Yes{{else}}No{{/if}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

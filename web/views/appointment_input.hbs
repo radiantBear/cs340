@@ -1,0 +1,40 @@
+<form>
+    {{#unless newAppointment}}
+    <input type="hidden" name="id" value="{{appointment.id}}">
+    {{/unless}}
+
+    <label for="employee">Employee</label>
+    <select name="employee">
+            <option value="invalid">--</option>
+        {{#each employees}}
+            <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="customer">Customer</label>
+    <select name="customer">
+        <option value="invalid">--</option>
+        {{#each customers}}
+            <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="services">Services</label>
+    <select name="services">
+        <option value="invalid">--</option>
+        {{#each services}}
+            <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="date">Date</label>
+    <input name="date" type="date" {{#unless newAppointment}}value="{{appointment.appointmentDate}}"{{/unless}}>
+
+    <label for="status">Status</label>
+    <input name="status" type="text" {{#unless newAppointment}}value="{{appointment.status}}"{{/unless}}>
+
+    <label for="notes">Notes</label>
+    <textarea name="notes">{{#unless newAppointment}}{{appointment.notes}}{{/unless}}</textarea>
+
+    <button type="submit">Save</button>
+</form>

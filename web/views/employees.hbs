@@ -1,0 +1,16 @@
+<table>
+    <thead>
+        <tr>Name</tr>
+        <tr>Phone</tr>
+        <tr>Email</tr>
+    </thead>
+    <tbody>
+        {{#each employees}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.phone}}</td>
+                <td>{{this.email}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

@@ -3,13 +3,15 @@
 ## Setup
 First, run `npm install`. Then, create a `.env` file in the same directory as this README 
 (or create the following environment variables), replacing the values with real 
-credentials:
+credentials and the port number to host the app on:
 
 ```env
 DB_HOST="database.example.com"
 DB_NAME="example_db"
 DB_USERNAME="root"
 DB_PASSWORD="password"
+
+PORT=3000
 ```
 
 ## Key Scripts
