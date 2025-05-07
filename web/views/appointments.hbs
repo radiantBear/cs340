@@ -1,0 +1,28 @@
+<h1>Appointments</h1>
+<p>A list of all appointments where you can edit them</p>
+
+<table>
+    <thead>
+        <tr>Employee</tr>
+        <tr>Customer</tr>
+        <tr>Services Requested</tr>
+        <tr>Date</tr>
+        <tr>Status</tr>
+        <tr>Notes</tr>
+    </thead>
+    <tbody>
+        {{#each appointments}}
+            <tr>
+                <td>{{this.employeeName}}</td>
+                <td>{{this.customerName}}</td>
+                <td>{{this.servicesRequested}}</td>
+                <td>{{this.appointmentDate}}</td>
+                <td>{{this.status}}</td>
+                <td>{{this.notes}}</td>
+                <td>
+                    <a href="/appointments/{{this.appointmentId}}">Edit</a>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

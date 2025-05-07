@@ -26,6 +26,33 @@ app.get('/customers', async (_, res) => {
     res.status(200).render('customers', { customers });
 });
 
+app.get('/invoices', async (_, res) => {
+    const [invoices] = await db.execute('SELECT * FROM Invoices;');
+    res.status(200).render('invoices', { invoices });
+});
+
+app.get('/appointments', async (_, res) => {
+    const [appointments] = await db.execute(`
+        SELECT 
+            a.appointmentId,
+            e.name AS employeeName,
+            c.name AS customerName,
+            a.appointmentDate,
+            a.status,
+            a.notes,
+            GROUP_CONCAT(s.name ORDER BY s.name SEPARATOR ', ') AS servicesRequested
+        FROM Appointments a
+            JOIN Employees e ON a.employeeId = e.employeeId
+            JOIN Customers c ON a.customerId = c.customerId
+            LEFT JOIN AppointmentServices aps ON a.appointmentId = aps.appointmentId
+            LEFT JOIN Services s ON aps.serviceId = s.serviceId
+        GROUP BY a.appointmentId, e.name, c.name, a.appointmentDate, a.status, a.notes
+        ORDER BY a.appointmentDate ASC;
+    `);
+
+    res.status(200).render('appointments', { appointments });
+});
+
 app.get('/appointments/new', async (_, res) => {
     const [employees] = await db.execute('SELECT * FROM Employees;');
     const [customers] = await db.execute('SELECT * FROM Customers;');

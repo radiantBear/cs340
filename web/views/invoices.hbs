@@ -1,0 +1,19 @@
+<h1>Invoices</h1>
+<p>A list of all invoices</p>
+
+<table>
+    <thead>
+        <tr>Invoice Date</tr>
+        <tr>Total Cost</tr>
+        <tr>Elapsed Time</tr>
+    </thead>
+    <tbody>
+        {{#each invoices}}
+            <tr>
+                <td>{{this.date}}</td>
+                <td>{{this.totalCost}}</td>
+                <td>{{this.elapsedTime}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
