@@ -2,9 +2,20 @@ require('dotenv').config();
 const app = require('express')();
 const port = process.env.PORT || 3000;
 const db = require('./database/db-connector');
+const Handlebars = require('handlebars');
 
 app.engine('.hbs', require('express-handlebars').engine({ defaultLayout: 'main', extname: '.hbs' }));
 app.set('view engine', '.hbs');
+
+Handlebars.registerHelper('formatDateForInput', (date) => {
+    return date.toISOString().split('T')[0]
+});
+
+Handlebars.registerHelper('eq', (a, b) => {
+    console.log(a, b)
+    return a === b;
+});
+
 
 
 app.get('/', (_, res) => {
