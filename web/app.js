@@ -2,9 +2,18 @@ require('dotenv').config();
 const app = require('express')();
 const port = process.env.PORT || 3000;
 const db = require('./database/db-connector');
+const Handlebars = require('handlebars');
 
 app.engine('.hbs', require('express-handlebars').engine({ defaultLayout: 'main', extname: '.hbs' }));
 app.set('view engine', '.hbs');
+
+Handlebars.registerHelper('formatDateForInput', (date) => {
+    return date.toISOString().split('T')[0]
+});
+
+Handlebars.registerHelper('eq', (a, b) => {
+    return a === b;
+});
 
 app.get('/', (_, res) => {
     res.status(200).render('index');
@@ -66,8 +75,8 @@ app.get('/appointments/:id', async (req, res) => {
     const [services] = await db.execute('SELECT * FROM Services;');
 
     const [[appointment]] = await db.execute('SELECT * FROM Appointments WHERE appointmentId = ?;', [req.params.id]);
-    console.log(appointment);
-    res.status(200).render('appointment_input', { employees, customers, services, appointment, newAppointment: false });
+    const [selectedServices] = await db.execute('SELECT serviceId FROM AppointmentServices WHERE appointmentId = ?;', [req.params.id]);
+    res.status(200).render('appointment_input', { employees, customers, services, appointment, selectedServices, newAppointment: false });
 });
 
 app.listen(port, () => {
