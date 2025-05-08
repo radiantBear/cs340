@@ -12,7 +12,6 @@ Handlebars.registerHelper('formatDateForInput', (date) => {
 });
 
 Handlebars.registerHelper('eq', (a, b) => {
-    console.log(a, b)
     return a === b;
 });
 
@@ -76,8 +75,8 @@ app.get('/appointments/:id', async (req, res) => {
     const [services] = await db.execute('SELECT * FROM Services;');
 
     const [[appointment]] = await db.execute('SELECT * FROM Appointments WHERE appointmentId = ?;', [req.params.id]);
-    console.log(appointment);
-    res.status(200).render('appointment_input', { employees, customers, services, appointment, newAppointment: false });
+    const [selectedServices] = await db.execute('SELECT serviceId FROM AppointmentServices WHERE appointmentId = ?;', [req.params.id]);
+    res.status(200).render('appointment_input', { employees, customers, services, appointment, selectedServices, newAppointment: false });
 });
 
 app.listen(port, () => {
