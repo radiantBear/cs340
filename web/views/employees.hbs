@@ -1,16 +1,23 @@
-<table>
-    <thead>
-        <tr>Name</tr>
-        <tr>Phone</tr>
-        <tr>Email</tr>
+<div class="container">
+  <h1 class="mb-4">Employees</h1>
+  <p class="lead">A list of all current employees and their contact information.</p>
+
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+      </tr>
     </thead>
     <tbody>
-        {{#each employees}}
-            <tr>
-                <td>{{this.name}}</td>
-                <td>{{this.phone}}</td>
-                <td>{{this.email}}</td>
-            </tr>
-        {{/each}}
+      {{#each employees}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>{{this.phone}}</td>
+          <td>{{this.email}}</td>
+        </tr>
+      {{/each}}
     </tbody>
-</table>
+  </table>
+</div>

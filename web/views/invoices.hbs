@@ -1,19 +1,23 @@
-<h1>Invoices</h1>
-<p>A list of all invoices</p>
+<div class="container">
+  <h1 class="mb-4">Invoices</h1>
+  <p class="lead">A list of all invoices</p>
 
-<table>
-    <thead>
-        <tr>Invoice Date</tr>
-        <tr>Total Cost</tr>
-        <tr>Elapsed Time</tr>
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Invoice Date</th>
+        <th>Total Cost</th>
+        <th>Elapsed Time</th>
+      </tr>
     </thead>
     <tbody>
-        {{#each invoices}}
-            <tr>
-                <td>{{this.date}}</td>
-                <td>{{this.totalCost}}</td>
-                <td>{{this.elapsedTime}}</td>
-            </tr>
-        {{/each}}
+      {{#each invoices}}
+        <tr>
+          <td>{{this.date}}</td>
+          <td>{{this.totalCost}}</td>
+          <td>{{this.elapsedTime}}</td>
+        </tr>
+      {{/each}}
     </tbody>
-</table>
+  </table>
+</div>
