@@ -15,7 +15,6 @@ Handlebars.registerHelper('eq', (a, b) => {
     return a === b;
 });
 
-
 app.get('/', (_, res) => {
     res.status(200).render('index');
 });
