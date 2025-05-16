@@ -26,7 +26,7 @@
     <fieldset class="col-12 g-3">
         <legend class="col-form-label">Services</legend>
         {{#each selectedServices}}
-            {{> service_input services=../services template=false selectedService=this.serviceId}}
+            {{> service_input services=../services blank=false selectedService=this.serviceId}}
         {{/each}}
 
         <button type="button" class="btn btn-outline-success float-end"
@@ -36,7 +36,7 @@
         </button>
 
         <template id="service-select">
-            {{> service_input services=services template=true}}
+            {{> service_input services=services blank=true}}
         </template>
     </fieldset>
 
