@@ -1,11 +1,13 @@
 <span style="display: flex; gap: 1em; margin: 1em 0;">
     <select name="service" class="form-select">
-        <option value="invalid" {{#if template}}selected{{else}}disabled{{/if}}>--</option>
+        <option value="invalid" {{#if blank}}selected{{else}}disabled{{/if}}>--</option>
         {{#each services}}
             <option value="{{this.serviceId}}" {{#if (eq ../selectedService this.serviceId)}}selected{{/if}}>{{this.name}}</option>
         {{/each}}
     </select>
+    {{#unless noDelete}}
     <button type="button" class="btn btn-outline-danger">
         <i class="bi bi-x-lg"></i>
     </button>
+    {{/unless}}
 </span>
