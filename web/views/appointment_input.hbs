@@ -29,7 +29,8 @@
             {{> service_input services=../services template=false selectedService=this.serviceId}}
         {{/each}}
 
-        <button type="button" class="btn btn-outline-success float-end">
+        <button type="button" class="btn btn-outline-success float-end"
+                data-bs-toggle="modal" data-bs-target="#serviceModal">
             <i class="bi bi-plus-lg"></i>
             Add
         </button>
