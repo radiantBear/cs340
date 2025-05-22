@@ -43,6 +43,18 @@ app.delete('/appointments/:appointmentId/services/:serviceId', );
 
 app.use('/static', express.static('static'));
 
+app.post('/resetDb', async (req, res) => {
+  try {
+    await db.query('CALL sp_LoadGreenscapesDb();');
+    console.log('Database was reset');
+
+    res.redirect('/');
+  } catch (error) {
+    console.error('Error resetting database:', error);
+    res.status(500).send('Failed to reset database.');
+  }
+});
+
 app.post('/appointments/:appointmentId/addservice', async function (req, res) {
     try {
         const { appointmentId } = req.params;
