@@ -1,40 +1,82 @@
-<form>
+<form class="row g-3">
     {{#unless newAppointment}}
-    <input type="hidden" name="id" value="{{appointment.id}}">
+        <input type="hidden" name="id" value="{{appointment.id}}">
     {{/unless}}
 
-    <label for="employee">Employee</label>
-    <select name="employee">
-            <option value="invalid">--</option>
-        {{#each employees}}
-            <option value="{{this.id}}">{{this.name}}</option>
+    <div class="form-floating col-md-6">
+        <select name="employee" id="employee" class="form-select">
+                <option value="invalid" {{#if newAppointment}}selected{{/if}}>--</option>
+                {{#each employees}}
+                    <option value="{{this.employeeId}}" {{#if (eq this.employeeId ../appointment.employeeId)}}selected{{/if}}>{{this.name}}</option>
+                {{/each}}
+        </select>
+        <label for="employee">Employee</label>
+    </div>
+
+    <div class="form-floating col-md-6">
+        <select name="customer" id="customer" class="form-select">
+            <option value="invalid" {{#if newAppointment}}selected{{/if}}>--</option>
+            {{#each customers}}
+                <option value="{{this.customerId}}" {{#if (eq this.customerId ../appointment.customerId)}}selected{{/if}}>{{this.name}}</option>
+            {{/each}}
+        </select>
+        <label for="customer">Customer</label>
+    </div>
+
+    <fieldset class="col-12 g-3">
+        <legend class="col-form-label">Services</legend>
+        {{#each selectedServices}}
+            {{> service_input services=../services blank=false selectedService=this.serviceId}}
         {{/each}}
-    </select>
 
-    <label for="customer">Customer</label>
-    <select name="customer">
-        <option value="invalid">--</option>
-        {{#each customers}}
-            <option value="{{this.id}}">{{this.name}}</option>
-        {{/each}}
-    </select>
+        <button type="button" class="btn btn-outline-success float-end"
+                data-bs-toggle="modal" data-bs-target="#serviceModal">
+            <i class="bi bi-plus-lg"></i>
+            Add
+        </button>
 
-    <label for="services">Services</label>
-    <select name="services">
-        <option value="invalid">--</option>
-        {{#each services}}
-            <option value="{{this.id}}">{{this.name}}</option>
-        {{/each}}
-    </select>
+        <template id="service-select">
+            {{> service_input services=services blank=true}}
+        </template>
+    </fieldset>
 
-    <label for="date">Date</label>
-    <input name="date" type="date" {{#unless newAppointment}}value="{{appointment.appointmentDate}}"{{/unless}}>
+    <div class="form-floating col-md-6">
+        <input name="date" id="date" type="date" {{#unless newAppointment}}value="{{formatDateForInput appointment.appointmentDate}}"{{/unless}} class="form-control">
+        <label for="date">Date</label>
+    </div>
 
-    <label for="status">Status</label>
-    <input name="status" type="text" {{#unless newAppointment}}value="{{appointment.status}}"{{/unless}}>
+    <div class="form-floating col-md-6">
+        <input name="status" id="status" placeholder="Status" type="text" {{#unless newAppointment}}value="{{appointment.status}}"{{/unless}} class="form-control">
+        <label for="status">Status</label>
+    </div>
 
-    <label for="notes">Notes</label>
-    <textarea name="notes">{{#unless newAppointment}}{{appointment.notes}}{{/unless}}</textarea>
+    <div class="form-floating col-12">
+        <textarea name="notes" id="notes" placeholder="Notes" class="form-control" style="height: 7em;">{{#unless newAppointment}}{{appointment.notes}}{{/unless}}</textarea>
+        <label for="notes">Notes</label>
+    </div>
 
-    <button type="submit">Save</button>
+    <button type="submit" class="btn btn-outline-primary">
+        <i class="bi bi-floppy me-1"></i>
+        Save
+    </button>
 </form>
+
+<div class="modal fade" id="serviceModal" tabindex="-1" aria-labelledby="serviceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="serviceModalLabel">Add Service</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    {{> service_input services=services blank=true noDelete=true}}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
