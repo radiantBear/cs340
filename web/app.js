@@ -79,6 +79,18 @@ app.get('/appointments/:id', async (req, res) => {
     res.status(200).render('appointment_input', { employees, customers, services, appointment, selectedServices, newAppointment: false });
 });
 
+app.post('/resetDb', async (req, res) => {
+  try {
+    await db.query('CALL sp_LoadGreenscapesDb();');
+    console.log('Database was reset');
+
+    res.redirect('/');
+  } catch (error) {
+    console.error('Error resetting database:', error);
+    res.status(500).send('Failed to reset database.');
+  }
+});
+
 app.post('/appointments/:appointmentId/addservice', async function (req, res) {
     try {
         const { appointmentId } = req.params;
