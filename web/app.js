@@ -1,3 +1,9 @@
+// Citation for the following functions:
+// Date: 05/20/2025
+// Adapted from Exploration - Web Application Technology and Exploration - Implementing CUD operations in your app
+// Source URL: https://oregonstate.instructure.com/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+// Source URL: https://oregonstate.instructure.com/courses/1999601/pages/exploration-web-application-technology-2
+
 require('dotenv').config();
 const express = require('express');
 const app = express();
