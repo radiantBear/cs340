@@ -1,5 +1,6 @@
 require('dotenv').config();
-const app = require('express')();
+const express = require('express');
+const app = express();
 const port = process.env.PORT || 3000;
 const db = require('./database/db-connector');
 const Handlebars = require('handlebars');
@@ -14,6 +15,8 @@ Handlebars.registerHelper('formatDateForInput', (date) => {
 Handlebars.registerHelper('eq', (a, b) => {
     return a === b;
 });
+
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (_, res) => {
     res.status(200).render('index');
@@ -101,7 +104,7 @@ app.post('/appointments/:appointmentId/addservice', async function (req, res) {
 
         const query1 = `CALL sp_InsertAppointmentService(?, ?, @resultStatus);`;
 
-        const [[[rows]]] = await db.query(query1, [
+        const [rows] = await db.query(query1, [
             data.newServiceId,
             appointmentId
         ]);
