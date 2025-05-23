@@ -1,5 +1,5 @@
 <span style="display: flex; gap: 1em; margin: 1em 0;">
-    <select name="service" class="form-select">
+    <select name="newServiceId" class="form-select">
         <option value="invalid" {{#if blank}}selected{{else}}disabled{{/if}}>--</option>
         {{#each services}}
             <option value="{{this.serviceId}}" {{#if (eq ../selectedService this.serviceId)}}selected{{/if}}>{{this.name}}</option>
