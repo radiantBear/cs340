@@ -1,20 +1,10 @@
-function deleteService(appointmentId, serviceId, successUrl, failUrl) {
+function deleteService(appointmentId, serviceId) {
     try {
         fetch(
             `/appointments/${appointmentId}/services/${serviceId}`,
-            {
-                method: 'DELETE'
-            }
+            { method: 'DELETE' }
         )
-        .then(result => {
-            if (result.status >= 400)
-                window.location.href = failUrl;
-            
-            window.location.href = successUrl;
-        });
-
+        .then(() => { window.location.reload(); });
     } 
-    catch (_) {
-        window.location.href = failUrl;
-    }
+    catch (_) { }
 }

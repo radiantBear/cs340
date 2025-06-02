@@ -6,7 +6,7 @@
         {{/each}}
     </select>
     {{#unless noDelete}}
-    <button type="button" class="btn btn-outline-danger" onclick="deleteService({{appointmentId}}, {{selectedService}}, '/appointments/{{appointmentId}}', '/appointments/{{appointmentId}}')">
+    <button type="button" class="btn btn-outline-danger" onclick="deleteService({{appointmentId}}, {{selectedService}})">
         <i class="bi bi-x-lg"></i>
     </button>
     {{/unless}}
