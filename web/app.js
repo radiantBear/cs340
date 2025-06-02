@@ -115,10 +115,10 @@ app.post('/appointments/:appointmentId/service', async function (req, res) {
             appointmentId
         ]);
 
-        if (rows.resultStatus == 1)
-            console.log(`Service was successfully added `
-            );
-        else console.log(`Service failed to be added`);
+        if (rows.affectedRows == 1)
+            console.log('Service was successfully added');
+        else 
+            console.log('Service failed to be added');
 
         res.redirect(`/appointments/${appointmentId}`);
     } catch (error) {
@@ -163,18 +163,16 @@ app.delete('/appointments/:appointmentId/services/:serviceId', async function (r
         const { appointmentId, serviceId } = req.params;
 
         const query1 = `CALL sp_DeleteAppointmentService(?, ?, @resultStatus);`;
-        const [[[rows]]] = await db.query(query1, [
-            appointmentId,
-            serviceId
+        const [result] = await db.query(query1, [
+            parseInt(appointmentId),
+            parseInt(serviceId)
         ]);
 
-        if (rows.resultStatus == 1)
-            console.log(`Service was successfully deleted `
-            );
-        else console.log(`Service failed to be deleted`);
-
-        // Redirect the user to the updated webpage data
-        res.redirect(`/appointments/${appointmentId}`);
+        if (result.affectedRows == 1)
+            res.status(200).send('Service was successfully deleted');
+        else 
+            res.status(500).send('Service failed to be deleted');
+        
     } catch (error) {
         console.error('Error executing queries:', error);
         // Send a generic error message to the browser
