@@ -184,6 +184,8 @@ app.delete('/appointments/:appointmentId/services/:serviceId', async function (r
     }
 });
 
+app.use('/static', express.static('static'));
+
 app.listen(port, () => {
     console.log("Server is listening on port", port);
 });
