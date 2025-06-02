@@ -23,6 +23,7 @@ Handlebars.registerHelper('eq', (a, b) => {
 });
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get('/', (_, res) => {
     res.status(200).render('index');
@@ -129,7 +130,7 @@ app.post('/appointments/:appointmentId/service', async function (req, res) {
     }
 });
 
-app.post('/appointments/:appointmentId/updateservice/:oldServiceId', async function (req, res) {
+app.patch('/appointments/:appointmentId/service/:oldServiceId', async function (req, res) {
     try {
         const { appointmentId, oldServiceId } = req.params;
         let data = req.body;
@@ -138,18 +139,16 @@ app.post('/appointments/:appointmentId/updateservice/:oldServiceId', async funct
             data.newServiceId = null;
 
         const query1 = 'CALL sp_UpdateAppointmentService(?, ?, ?, @resultStatus);';
-        const [[[rows]]] = await db.query(query1, [
+        const [rows] = await db.query(query1, [
             oldServiceId,
             data.newServiceId,
             appointmentId
         ]);
         
-        if (rows.resultStatus == 1)
-            console.log(`Service was successfully updated `
-            );
-        else console.log(`Service failed to be updated`);
-
-        res.redirect(`/appointments/${appointmentId}`);
+        if (rows.affectedRows == 1)
+            console.log(`Service was successfully updated `);
+        else 
+            console.log(`Service failed to be updated`);
     } catch (error) {
         console.error('Error executing queries:', error);
         res.status(500).send(
