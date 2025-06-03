@@ -1,12 +1,12 @@
 <span style="display: flex; gap: 1em; margin: 1em 0;">
-    <select name="newServiceId" class="form-select">
+    <select name="newServiceId" class="form-select" onchange="updateService({{appointmentId}}, {{selectedService}}, this.value);">
         <option value="invalid" {{#if blank}}selected{{else}}disabled{{/if}}>--</option>
         {{#each services}}
             <option value="{{this.serviceId}}" {{#if (eq ../selectedService this.serviceId)}}selected{{/if}}>{{this.name}}</option>
         {{/each}}
     </select>
     {{#unless noDelete}}
-    <button type="button" class="btn btn-outline-danger">
+    <button type="button" class="btn btn-outline-danger" onclick="deleteService({{appointmentId}}, {{selectedService}})">
         <i class="bi bi-x-lg"></i>
     </button>
     {{/unless}}

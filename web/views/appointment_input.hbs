@@ -4,7 +4,7 @@
     {{/unless}}
 
     <div class="form-floating col-md-6">
-        <select name="employee" id="employee" class="form-select">
+        <select disabled name="employee" id="employee" class="form-select">
                 <option value="invalid" {{#if newAppointment}}selected{{/if}}>--</option>
                 {{#each employees}}
                     <option value="{{this.employeeId}}" {{#if (eq this.employeeId ../appointment.employeeId)}}selected{{/if}}>{{this.name}}</option>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="form-floating col-md-6">
-        <select name="customer" id="customer" class="form-select">
+        <select disabled name="customer" id="customer" class="form-select">
             <option value="invalid" {{#if newAppointment}}selected{{/if}}>--</option>
             {{#each customers}}
                 <option value="{{this.customerId}}" {{#if (eq this.customerId ../appointment.customerId)}}selected{{/if}}>{{this.name}}</option>
@@ -26,7 +26,7 @@
     <fieldset class="col-12 g-3">
         <legend class="col-form-label">Services</legend>
         {{#each selectedServices}}
-            {{> service_input services=../services blank=false selectedService=this.serviceId}}
+            {{> service_input appointmentId=../appointment.appointmentId services=../services blank=false selectedService=this.serviceId}}
         {{/each}}
 
         <button type="button" class="btn btn-outline-success float-end"
@@ -34,35 +34,31 @@
             <i class="bi bi-plus-lg"></i>
             Add
         </button>
-
-        <template id="service-select">
-            {{> service_input services=services blank=true}}
-        </template>
     </fieldset>
 
     <div class="form-floating col-md-6">
-        <input name="date" id="date" type="date" {{#unless newAppointment}}value="{{formatDateForInput appointment.appointmentDate}}"{{/unless}} class="form-control">
+        <input disabled name="date" id="date" type="date" {{#unless newAppointment}}value="{{formatDateForInput appointment.appointmentDate}}"{{/unless}} class="form-control">
         <label for="date">Date</label>
     </div>
 
     <div class="form-floating col-md-6">
-        <input name="status" id="status" placeholder="Status" type="text" {{#unless newAppointment}}value="{{appointment.status}}"{{/unless}} class="form-control">
+        <input disabled name="status" id="status" placeholder="Status" type="text" {{#unless newAppointment}}value="{{appointment.status}}"{{/unless}} class="form-control">
         <label for="status">Status</label>
     </div>
 
     <div class="form-floating col-12">
-        <textarea name="notes" id="notes" placeholder="Notes" class="form-control" style="height: 7em;">{{#unless newAppointment}}{{appointment.notes}}{{/unless}}</textarea>
+        <textarea disabled name="notes" id="notes" placeholder="Notes" class="form-control" style="height: 7em;">{{#unless newAppointment}}{{appointment.notes}}{{/unless}}</textarea>
         <label for="notes">Notes</label>
     </div>
 
-    <button type="submit" class="btn btn-outline-primary">
+    <button disabled type="submit" class="btn btn-outline-primary">
         <i class="bi bi-floppy me-1"></i>
         Save
     </button>
 </form>
 
 <div class="modal fade" id="serviceModal" tabindex="-1" aria-labelledby="serviceModalLabel" aria-hidden="true">
-    <form action="/appointments/{{appointment.appointmentId}}/addservice" method="POST">
+    <form action="/appointments/{{appointment.appointmentId}}/service" method="POST">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
