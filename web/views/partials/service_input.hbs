@@ -1,3 +1,4 @@
+<!-- Partial view for manipulating services tied to an appointment-->
 <span style="display: flex; gap: 1em; margin: 1em 0;">
     <select name="newServiceId" class="form-select" onchange="updateService({{appointmentId}}, {{selectedService}}, this.value);">
         <option value="invalid" {{#if blank}}selected{{else}}disabled{{/if}}>--</option>

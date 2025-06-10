@@ -1,3 +1,6 @@
+<!-- Input page where a user can edit appointment information (Most fields are disabled as we are focusing on manipulating the M:N relationships with the services)-->
+<h1 class="mb-4">Edit Appointment</h1>
+<p class="lead">Please add, update, or delete services here. Save button is disabled in the appointment form as the focus is on the Services tied to the appointment</p>
 <form class="row g-3">
     {{#unless newAppointment}}
         <input type="hidden" name="id" value="{{appointment.appointmentId}}">
@@ -23,6 +26,7 @@
         <label for="customer">Customer</label>
     </div>
 
+    <!-- Represents the M:N intersection AppointmentServices table-->
     <fieldset class="col-12 g-3">
         <legend class="col-form-label">Services</legend>
         {{#each selectedServices}}
@@ -57,6 +61,7 @@
     </button>
 </form>
 
+<!-- Pop up modal for the service_input partial view for selecting a service from a drop down-->
 <div class="modal fade" id="serviceModal" tabindex="-1" aria-labelledby="serviceModalLabel" aria-hidden="true">
     <form action="/appointments/{{appointment.appointmentId}}/service" method="POST">
         <div class="modal-dialog modal-dialog-centered">
