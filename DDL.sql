@@ -210,3 +210,5 @@ BEGIN
 END //
 
 DELIMITER ;
+
+CALL sp_LoadGreenscapesDb;
