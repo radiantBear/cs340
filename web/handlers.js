@@ -6,6 +6,10 @@
 // Source URL: https://oregonstate.instructure.com/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 // Source URL: https://oregonstate.instructure.com/courses/1999601/pages/exploration-web-application-technology-2
 
+
+const db = require('./database/db-connector');
+
+
 function getRootHTML(_, res) {
     res.status(200).render('index');
 }
