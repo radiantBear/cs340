@@ -101,7 +101,7 @@ app.post('/resetDb', async (req, res) => {
   }
 });
 
-app.post('/appointments/:appointmentId/service', async function (req, res) {
+app.post('/appointments/:appointmentId/addservice', async function (req, res) {
     try {
         const { appointmentId } = req.params;
         let data = req.body;
