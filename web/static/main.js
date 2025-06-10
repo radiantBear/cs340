@@ -1,3 +1,4 @@
+// Updates a service tied to a specific appointment
 function updateService(appointmentId, oldServiceId, newServiceId) {
     try {
         fetch(
@@ -16,7 +17,7 @@ function updateService(appointmentId, oldServiceId, newServiceId) {
     catch (_) { window.location.reload(); }
 }
 
-
+// Deletes a service tied to a specific appointment
 function deleteService(appointmentId, serviceId) {
     try {
         fetch(

@@ -1,3 +1,7 @@
+-- CS340 Portfolio Project - Data Definition Queries
+-- This sql file contains the Data Definition queries in the form of a stored procedure that is also used to reset the database.
+-- Creates the Employees, Services, Customers, Appointments, AppointmentServices, and Invoice tables and populates them with sample data.
+
 -- # Citation for the following stored procedure:
 -- # Date: 05/20/2025
 -- # Adapted from Exploration - Implementing CUD operations in your app
@@ -9,6 +13,10 @@ CREATE PROCEDURE sp_LoadGreenscapesDb()
 BEGIN
 	SET FOREIGN_KEY_CHECKS=0;
     
+-- #############################
+-- CREATE TABLES
+-- #############################
+
 	DROP TABLE IF EXISTS Employees;
 	CREATE TABLE Employees (
 		employeeId int PRIMARY KEY AUTO_INCREMENT,
@@ -85,7 +93,9 @@ BEGIN
 			ON DELETE CASCADE
 	);
 	
-	-- SAMPLE DATA --
+-- #############################
+-- SAMPLE DATA
+-- #############################
     
 	INSERT INTO Employees (
 		name, phone, email

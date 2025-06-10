@@ -1,5 +1,8 @@
--- Data Manipulation Queries
+-- CS340 Portfolio Project - Data Manipulation Queries
+-- This sql file contains the Data Manipulation queries that perform all CRUD operations 
 -- Using the @ symbol to denote variables that will have data from the backend
+
+-- All sql statements below were written by the group
 
 -- get all data for every employee for the Employees page
 SELECT * FROM employees;
